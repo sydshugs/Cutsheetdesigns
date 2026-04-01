@@ -1,7 +1,8 @@
+import image_272d0c1a38cb660506d2fa2ede70fcf9ea6979f4 from 'figma:asset/272d0c1a38cb660506d2fa2ede70fcf9ea6979f4.png'
 import image_879f728f39335c586a120f603af9b719c0902399 from 'figma:asset/879f728f39335c586a120f603af9b719c0902399.png'
 import image_93f028c2d5eca2e5697823bddd5ebdc725e369ef from 'figma:asset/93f028c2d5eca2e5697823bddd5ebdc725e369ef.png'
 import React, { useState } from "react";
-import { Wand2, Sparkles, ShieldCheck, Crosshair, Play } from "lucide-react";
+import { Wand2, Sparkles, ShieldCheck, Crosshair, Play, Copy, FileDown, Share2 } from "lucide-react";
 import { ScoreCard } from "./ScoreCard";
 import { PredictedPerformanceCard } from "./PredictedPerformanceCard";
 import { BudgetRecommendationCard } from "./BudgetRecommendationCard";
@@ -31,7 +32,7 @@ export default function ResultsScreen() {
 
       {/* LEFT COLUMN (38%) */}
       <div className={`${activePanel === 'visualize' ? 'w-full justify-center' : 'flex-1 justify-end border-r border-white/[0.04]'} h-full overflow-y-auto scrollbar-hide flex z-10 relative transition-all duration-500`}>
-        <div className={`w-full ${activePanel === 'visualize' ? 'max-w-[1000px] p-[32px]' : 'p-[16px]'} h-fit transition-all duration-500`}>
+        <div className={`w-full ${activePanel === 'visualize' ? 'max-w-[1000px] p-[32px] pb-[80px]' : 'p-[16px] pb-[80px]'} h-fit transition-all duration-500`}>
             {activePanel === 'visualize' ? (
               <VisualizePanel onClose={() => setActivePanel('default')} originalImageSrc={image_879f728f39335c586a120f603af9b719c0902399} />
             ) : (
@@ -41,7 +42,7 @@ export default function ResultsScreen() {
                   {/* Image Placeholder for video thumbnail */}
                   <div className="flex-1 w-full relative flex items-center justify-center rounded-t-2xl overflow-hidden bg-zinc-900">
                     <img 
-                      src={image_879f728f39335c586a120f603af9b719c0902399} 
+                      src={image_272d0c1a38cb660506d2fa2ede70fcf9ea6979f4} 
                       alt="Ad preview" 
                       className="w-full h-full object-cover"
                     />
@@ -83,7 +84,7 @@ export default function ResultsScreen() {
       {/* RIGHT COLUMN (62%) */}
       {activePanel !== 'visualize' && (
         <div className="w-[380px] shrink-0 h-full overflow-y-auto scrollbar-hide bg-[#111113] z-10 relative">
-          <div className="w-full min-h-full p-[24px] flex flex-col">
+          <div className="w-full min-h-full p-[24px] pb-[72px] flex flex-col">
             {/* Container to constrain cards to their max-width, matching the design */}
             <div className="w-full flex flex-col gap-[16px]">
               {activePanel === 'policy' ? (
@@ -113,6 +114,22 @@ export default function ResultsScreen() {
           imageSrc={image_879f728f39335c586a120f603af9b719c0902399} 
         />
       )}
+
+      {/* FIXED BOTTOM BAR */}
+      <div className="absolute bottom-0 left-0 right-0 w-full h-[48px] bg-[#111113] border-t border-white/[0.06] flex items-center justify-end px-6 gap-[12px] z-50">
+        <button className="h-8 px-[12px] rounded-lg border border-white/[0.06] bg-transparent text-zinc-400 flex items-center gap-1.5 text-[13px] font-medium hover:text-zinc-300 hover:bg-white/[0.02] transition-colors">
+          <Copy size={14} />
+          Copy
+        </button>
+        <button className="h-8 px-[12px] rounded-lg border border-white/[0.06] bg-transparent text-zinc-400 flex items-center gap-1.5 text-[13px] font-medium hover:text-zinc-300 hover:bg-white/[0.02] transition-colors">
+          <FileDown size={14} />
+          PDF
+        </button>
+        <button className="h-8 px-[12px] rounded-lg bg-[#6366f1] text-white flex items-center gap-1.5 text-[13px] font-medium hover:bg-[#4f46e5] transition-colors">
+          <Share2 size={14} />
+          Share
+        </button>
+      </div>
 
     </div>
   );
