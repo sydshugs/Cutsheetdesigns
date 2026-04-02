@@ -49,52 +49,69 @@ const categories = [
 ];
 
 function PolicyCategoryCard({ category }: { category: any }) {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(true); // Image shows them expanded or we can default to true for preview
 
   const statusConfig = {
-    'Likely Rejection': { icon: XCircle, color: 'text-[#ef4444]', textClass: 'text-red-400', bgClass: 'bg-red-500/10' },
-    'Review': { icon: AlertTriangle, color: 'text-[#f59e0b]', textClass: 'text-amber-400', bgClass: 'bg-amber-500/10' },
-    'Clear': { icon: CheckCircle, color: 'text-[#10b981]', textClass: 'text-emerald-400', bgClass: 'bg-emerald-500/10' },
-  }[category.status as string] || { icon: CheckCircle, color: 'text-emerald-400', textClass: 'text-emerald-400', bgClass: 'bg-emerald-500/10' };
+    'Likely Rejection': { icon: XCircle, color: 'text-[#ef4444]', textClass: 'text-[#ef4444]', bgClass: 'bg-[#ef4444]/[0.12]' },
+    'Review': { icon: AlertTriangle, color: 'text-[#f59e0b]', textClass: 'text-[#f59e0b]', bgClass: 'bg-[#f59e0b]/[0.12]' },
+    'Clear': { icon: CheckCircle, color: 'text-[#10b981]', textClass: 'text-[#10b981]', bgClass: 'bg-[#10b981]/[0.12]' },
+  }[category.status as string] || { icon: CheckCircle, color: 'text-[#10b981]', textClass: 'text-[#10b981]', bgClass: 'bg-[#10b981]/[0.12]' };
 
   const StatusIcon = statusConfig.icon;
 
   return (
-    <div className="rounded-2xl border border-white/[0.06] bg-white/[0.02] flex flex-col overflow-hidden mb-2">
+    <div className="rounded-2xl border border-white/[0.06] bg-[#18181b] flex flex-col overflow-hidden">
       <div 
-        className="flex items-center justify-between px-4 py-3 cursor-pointer hover:bg-white/[0.04] transition-colors"
+        className="flex items-center gap-4 px-6 py-6 cursor-pointer hover:bg-white/[0.02] transition-colors"
         onClick={() => setIsOpen(!isOpen)}
       >
-        <div className="flex items-center gap-3">
-          <div className={`flex items-center gap-1.5 px-2 py-0.5 rounded-full ${statusConfig.bgClass}`}>
-            <StatusIcon size={12} className={statusConfig.color} />
-            <span className={`text-[10px] font-semibold ${statusConfig.textClass}`}>
-              {category.status}
-            </span>
+        {/* Status Pill */}
+        <div className={`flex items-center justify-center gap-2 rounded-full py-1.5 px-1 w-[104px] shrink-0 ${statusConfig.bgClass}`}>
+          <StatusIcon size={14} className={`shrink-0 ${statusConfig.color}`} />
+          <div className={`text-[11px] font-semibold leading-[1.2] text-left ${statusConfig.textClass}`}>
+            {category.status.split(' ').map((word: string, i: number) => (
+              <React.Fragment key={i}>
+                {word}
+                {i < category.status.split(' ').length - 1 && <br />}
+              </React.Fragment>
+            ))}
           </div>
-          <span className="text-sm font-medium text-zinc-200">{category.title}</span>
         </div>
-        <div className="flex items-center gap-3">
-          {category.risk && (
-            <span className={`text-[9px] font-semibold uppercase rounded px-1.5 py-0.5 ${
-              category.risk === 'HIGH RISK' ? 'bg-red-500/10 text-red-400' : 'bg-amber-500/10 text-amber-400'
-            }`}>
-              {category.risk}
-            </span>
-          )}
+
+        {/* Title */}
+        <div className="flex-1 text-[15px] font-semibold text-zinc-100 leading-[1.2]">
+          {category.title}
+        </div>
+
+        {/* Risk Badge */}
+        {category.risk && (
+          <div className={`text-[9px] font-bold uppercase rounded p-1.5 leading-[1.2] text-center shrink-0 ${
+            category.risk === 'HIGH RISK' ? 'bg-[#ef4444]/[0.12] text-[#ef4444]' : 'bg-[#f59e0b]/[0.12] text-[#f59e0b]'
+          }`}>
+            {category.risk.split(' ').map((word: string, i: number) => (
+              <React.Fragment key={i}>
+                {word}
+                {i < category.risk.split(' ').length - 1 && <br />}
+              </React.Fragment>
+            ))}
+          </div>
+        )}
+
+        {/* Chevron */}
+        <div className="shrink-0 ml-1">
           {isOpen ? <ChevronUp size={14} className="text-zinc-500" /> : <ChevronDown size={14} className="text-zinc-500" />}
         </div>
       </div>
       
       {isOpen && (
-        <div className="px-4 pb-4 border-t border-white/[0.04]">
-          <p className="text-sm text-zinc-400 mt-3 mb-3 leading-relaxed">
+        <div className="px-6 pb-6 pt-0 border-t border-white/[0.04]">
+          <p className="text-[14px] text-zinc-300/90 leading-relaxed mb-4 mt-6">
             {category.description}
           </p>
           {category.recommendation && (
-            <div className="rounded-xl bg-indigo-500/[0.06] border border-indigo-500/20 px-3 py-2.5 flex items-start gap-2">
-              <Wrench size={12} className="text-[#6366f1] mt-0.5 shrink-0" />
-              <p className="text-sm text-indigo-300 leading-snug">
+            <div className="rounded-[20px] bg-[#6366f1]/[0.06] border border-[#6366f1]/[0.15] px-4 py-3.5 flex items-start gap-3">
+              <Wrench size={14} className="text-[#6366f1] mt-0.5 shrink-0" />
+              <p className="text-[13px] font-medium text-indigo-200/90 leading-snug">
                 {category.recommendation}
               </p>
             </div>
@@ -183,11 +200,11 @@ export function PolicyCheckPanel({ onClose }: { onClose: () => void }) {
       </div>
 
       {/* SECTION 3 — Policy Categories */}
-      <div className="text-[10px] font-semibold uppercase tracking-wider text-zinc-600 mt-4 mb-2 px-1">
+      <div className="text-[11px] font-semibold uppercase tracking-[0.12em] text-zinc-500 mt-6 mb-4 px-1">
         POLICY CATEGORIES
       </div>
       
-      <div className="flex flex-col">
+      <div className="flex flex-col gap-6">
         {visibleCategories.map(category => (
           <PolicyCategoryCard key={category.id} category={category} />
         ))}

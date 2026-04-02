@@ -165,10 +165,9 @@ export const DisplayAnalyzerMockup: React.FC<DisplayAnalyzerMockupProps> = ({ im
                       As we move further into the decade, digital consumption habits continue to evolve rapidly. 
                       Users are presented with an unprecedented amount of content.
                     </p>
-                    {/* Inline image */}
-                    <div className="w-full h-28 bg-zinc-200 rounded flex items-center justify-center">
-                      <span className="text-[10px] text-zinc-400">Media Placeholder</span>
-                    </div>
+                    <p className="text-xs text-zinc-500 leading-relaxed">
+                      Publishers and advertisers alike are finding that native integration and context-aware placements yield significantly higher engagement rates. The key is providing immediate value rather than interrupting the user experience.
+                    </p>
                     <p className="text-xs text-zinc-500 leading-relaxed">
                       Brands that fail to capture attention within the first three seconds risk losing their audience entirely to competitors with more dynamic content strategies.
                       Marketers are increasingly focusing on "micro-moments" – those critical seconds when users turn to their devices to learn, do, discover, watch, or buy something.
@@ -206,9 +205,9 @@ export const DisplayAnalyzerMockup: React.FC<DisplayAnalyzerMockupProps> = ({ im
               </div>
               
               {/* Article layout */}
-              <div className="flex flex-col gap-4 p-6 bg-[#f9fafb] min-h-[420px]">
+              <div className="flex flex-col gap-4 p-6 bg-[#f9fafb] min-h-[640px]">
                 {activeFormat === '300×600 Half Page' ? (
-              <div className="flex gap-6 h-full">
+              <div className="flex gap-6">
                 {/* Left column - Content */}
                 <div className="flex-1 flex flex-col gap-4 pt-2">
                   <div className="text-[10px] text-zinc-400">
@@ -227,6 +226,12 @@ export const DisplayAnalyzerMockup: React.FC<DisplayAnalyzerMockupProps> = ({ im
                     <p className="text-xs text-zinc-500 leading-relaxed">
                       Brands that fail to capture attention within the first three seconds risk losing their audience entirely to competitors with more dynamic content strategies.
                       Marketers are increasingly focusing on "micro-moments" – those critical seconds when users turn to their devices to learn, do, discover, watch, or buy something.
+                    </p>
+                    <p className="text-xs text-zinc-500 leading-relaxed">
+                      Publishers and advertisers alike are finding that native integration and context-aware placements yield significantly higher engagement rates. The key is providing immediate value rather than interrupting the user experience with jarring visuals.
+                    </p>
+                    <p className="text-xs text-zinc-500 leading-relaxed">
+                      Furthermore, the rise of short-form video and transient social media formats has conditioned users to expect rapid delivery of information. The challenge for brands is to distill complex messages into easily digestible, highly visual formats without losing the core narrative.
                     </p>
                   </div>
                 </div>
@@ -257,7 +262,7 @@ export const DisplayAnalyzerMockup: React.FC<DisplayAnalyzerMockupProps> = ({ im
                 </div>
               </div>
             ) : activeFormat === '160×600 Skyscraper' ? (
-              <div className="flex gap-6 h-full">
+              <div className="flex gap-6">
                 {/* Left column - Content */}
                 <div className="flex-1 flex flex-col gap-5 pt-2">
                   <h2 className="text-base sm:text-lg font-semibold text-zinc-900 leading-snug">
@@ -276,9 +281,11 @@ export const DisplayAnalyzerMockup: React.FC<DisplayAnalyzerMockupProps> = ({ im
                     </p>
                   </div>
 
-                  {/* Inline Image Placeholder */}
-                  <div className="w-full h-[80px] bg-zinc-200 rounded flex items-center justify-center">
-                    <span className="text-[10px] text-zinc-400">Media Placeholder</span>
+                  {/* Replaced Media Placeholder */}
+                  <div className="flex flex-col gap-3">
+                    <p className="text-xs text-zinc-500 leading-relaxed">
+                      Publishers and advertisers alike are finding that native integration and context-aware placements yield significantly higher engagement rates. The key is providing immediate value rather than interrupting the user experience.
+                    </p>
                   </div>
 
                   <div className="flex flex-col gap-3">
